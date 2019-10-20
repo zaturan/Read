@@ -57,9 +57,10 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 Route::resource('books', 'BookController');
-// Route::get('books', 'BookController@index');
-Route::put('books', 'BookController@update');
-//Route::resources('genre', 'GenreController');
+Route::resource('genres', 'GenreController');
+Route::resource('authors', 'AuthorController');
+Route::resource('biddings', 'BiddingController');
+
 
 
 

@@ -9,6 +9,7 @@
             @csrf
             @method('post')
 
+
             <div class="card ">
               <div class="card-header card-header-primary">
                 <h4 class="card-title">{{ __('Add Book') }}</h4>
@@ -20,6 +21,7 @@
                       <a href="{{ route('books.index') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
                   </div>
                 </div>
+
                 <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Choose the file') }}</label>
                   <div class="col-sm-7">
@@ -31,6 +33,7 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Title') }}</label>
                   <div class="col-sm-7">
@@ -42,35 +45,104 @@
                     </div>
                   </div>
                 </div>
+
+                <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('Author') }}</label>
+                  <div class="col-sm-7">
+                    <div class="form-group{{ $errors->has('author') ? ' has-danger' : '' }}">
+
+                      @if ($errors->has('title'))
+                        <span id="author-error" class="error text-danger" for="input-author">{{ $errors->first('author') }}</span>
+                      @endif
+                      <select class="form-control" name="aut_id" type="text">
+                        <option>Please Select Author</option>
+                        @foreach($authors as $aut)
+                            <option value="{{$aut->aut_id}}">{{$aut->author}}</option>
+                        @endforeach
+                    </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('Genre') }}</label>
+                  <div class="col-sm-7">
+                    <div class="form-group">
+                    <select class="form-control" name="genre_id" type="text">
+                    <option>Please Select Genre</option>
+                    @foreach($genres as $genre)
+                        <option value="{{$genre->genre_id}}">{{$genre->genre}}</option>
+                    @endforeach
+                    </select>
+                    </div>
+                  </div>
+                </div>
+
+
+
                 <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Description') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('desc') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('desc') ? ' is-invalid' : '' }}" name="desc" id="input-desc" type="desc" placeholder="{{ __('Description') }}" value="{{ old('desc') }}" required />
-                      @if ($errors->has('email'))
+                      <input class="form-control{{ $errors->has('desc') ? ' is-invalid' : '' }}" name="desc" id="input-desc" type="text" placeholder="{{ __('Description') }}" value="{{ old('desc') }}" required />
+                      @if ($errors->has('desc'))
                         <span id="desc-error" class="error text-danger" for="input-desc">{{ $errors->first('desc') }}</span>
                       @endif
                     </div>
                   </div>
                 </div>
+
                 <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Year') }}</label>
-                  <div class="col-sm-7">
+                  <div class="col-sm-1">
                     <div class="form-group{{ $errors->has('year') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('year') ? ' is-invalid' : '' }}" name="year" id="input-desc" type="year" placeholder="{{ __('Year') }}" value="{{ old('year') }}" required />
+                      <input class="form-control{{ $errors->has('year') ? ' is-invalid' : '' }}" name="year" id="input-year" type="year" placeholder="{{ __('Year') }}" value="{{ old('year') }}" required />
                       @if ($errors->has('year'))
                         <span id="year-error" class="error text-danger" for="input-year">{{ $errors->first('y') }}</span>
                       @endif
                     </div>
                   </div>
                 </div>
+
                 <div class="row">
-                  <label class="col-sm-2 col-form-label">{{ __('Price') }}</label>
+                  <label class="col-sm-2 col-form-label">{{ __('Min Price') }}</label>
+                  <div>
+                    <div class="form-group{{ $errors->has('min_price') ? ' has-danger' : '' }}">
+                      <input class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" name="min_price" id="input-price" type="number" placeholder="{{ __(' Min Price') }}" value="{{ old('min_price') }}" required />
+                      @if ($errors->has('min_price'))
+                        <span id="price-error" class="error text-danger" for="input-min_price">{{ $errors->first('price') }}</span>
+                      @endif
+                    </div>
+                  </div>
+
+                  <label class="col-sm-2 col-form-label">{{ __('Max Price') }}</label>
+                  <div>
+                    <div class="form-group{{ $errors->has('max_price') ? ' has-danger' : '' }}">
+                      <input class="form-control{{ $errors->has('max_price') ? ' is-invalid' : '' }}" name="max_price" id="input-max_price" type="number" placeholder="{{ __(' Max Price') }}" value="{{ old('min_price') }}" required />
+                      @if ($errors->has('min_price'))
+                        <span id="price-error" class="error text-danger" for="input-min_price">{{ $errors->first('min_price') }}</span>
+                      @endif
+                    </div>
+                  </div>
+
+                  <label class="col-sm-2 col-form-label">{{ __('Buyout Price') }}</label>
+                  <div>
+                    <div class="form-group{{ $errors->has('buyout_price') ? ' has-danger' : '' }}">
+                      <input class="form-control{{ $errors->has('buyout_price') ? ' is-invalid' : '' }}" name="buyout_price" id="input-buyout_price" type="number" placeholder="{{ __(' Buyout Price') }}" value="{{ old('buyout_price') }}" required />
+                      @if ($errors->has('buyout_price'))
+                        <span id="price-error" class="error text-danger" for="input-buyout_price">{{ $errors->first('buyout_price') }}</span>
+                      @endif
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('End Date') }}</label>
                   <div class="col-sm-7">
-                    <div class="form-group{{ $errors->has('price') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" name="price" id="input-price" type="price" placeholder="{{ __('Price') }}" value="{{ old('price') }}" required />
-                      @if ($errors->has('year'))
-                        <span id="price-error" class="error text-danger" for="input-price">{{ $errors->first('price') }}</span>
+                    <div class="form-group{{ $errors->has('year') ? ' has-danger' : '' }}">
+                      <input class="form-control{{ $errors->has('year') ? ' is-invalid' : '' }}" name="end_date" id="input-end_date" type="date" placeholder="{{ __('MM/DD/YY') }}" value="{{ old('end_date') }}" required />
+                      @if ($errors->has('end_date'))
+                        <span id="end_date-error" class="error text-danger" for="end_date-year">{{ $errors->first('y') }}</span>
                       @endif
                     </div>
                   </div>

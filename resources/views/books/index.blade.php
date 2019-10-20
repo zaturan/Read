@@ -38,13 +38,28 @@
                           {{ __('Title') }}
                       </th>
                       <th>
+                          {{ __('Author') }}
+                      </th>
+                      <th>
+                          {{ __('Genre') }}
+                      </th>
+                      <th>
                         {{ __('Description') }}
                       </th>
                       <th>
                         {{ __('Year') }}
                       </th>
                       <th>
-                        {{ __('Price') }}
+                        {{ __('Min Price') }}
+                      </th>
+                      <th>
+                        {{ __('Max Price') }}
+                      </th>
+                      <th>
+                        {{ __('Buyout Price') }}
+                      </th>
+                      <th>
+                        {{ __('End Date') }}
                       </th>
                       <th class="text-center" colspan="3">
                         {{ __(' Actions') }}
@@ -63,13 +78,28 @@
                             {{ $book->title }}
                           </td>
                           <td>
+                            {{ $book->author }}
+                          </td>
+                          <td>
+                            {{ $book->genres->genre}}
+                          </td>
+                          <td>
                             {{ $book->desc }}
                           </td>
                           <td>
                             {{ $book->year }}
                           </td>
                           <td>
-                            {{ $book->price }}
+                            RM{{ $book->min_price }}
+                          </td>
+                          <td>
+                            RM{{ $book->max_price }}
+                          </td>
+                          <td>
+                            RM{{ $book->buyout_price }}
+                          </td>
+                          <td>
+                            RM{{ $book->end_date }}
                           </td>
                           <td class="td-actions text-right">
                             <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('books.edit', $book) }}" data-original-title="" title=""><i class="material-icons">edit</i>

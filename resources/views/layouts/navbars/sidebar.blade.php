@@ -11,7 +11,7 @@
   </div>
   <div class="sidebar-wrapper">
     <ul class="nav">
-      <li class="nav-item {{ ($activePage == 'books') ? ' active' : '' }}">
+      <li class="nav-item {{ ($activePage == 'books' || $activePage == 'genres' || $activePage == 'authors') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#book" aria-expanded="true">
           <i><img style="width:25px" src="{{asset('material')}}/img/laravel.svg"></i>
           <p>{{ __('Book') }}
@@ -24,6 +24,20 @@
               <a class="nav-link" href="{{ route('books.index') }}">
                 <span class="sidebar-mini"> MB </span>
                 <span class="sidebar-normal">{{ __('My Book') }} </span>
+              </a>
+            </li>
+
+            <li class="nav-item{{ $activePage == 'genres' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('genres.index') }}">
+                <span class="sidebar-mini"> MG </span>
+                <span class="sidebar-normal">{{ __('My Genre') }} </span>
+              </a>
+            </li>
+
+            <li class="nav-item{{ $activePage == 'authors' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('authors.index') }}">
+                <span class="sidebar-mini"> MA </span>
+                <span class="sidebar-normal">{{ __('My Author') }} </span>
               </a>
             </li>
 

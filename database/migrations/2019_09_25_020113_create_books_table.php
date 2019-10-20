@@ -20,6 +20,7 @@ class CreateBooksTable extends Migration
             $table->String('desc');
             $table->Integer('year');
             $table->String('price');
+
             $table->timestamps();
         });
     }

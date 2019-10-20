@@ -1,9 +1,10 @@
 <?php
 
-
 namespace App\Http\Controllers;
 
 use App\Book;
+use App\Genre;
+use App\Author;
 
 use Illuminate\Http\Request;
 
@@ -18,8 +19,11 @@ class BookController extends Controller
     {
         //
         $books = Book::all();
+       // $genres = Genre::all();
 
-        return view('books.index', compact('books'));
+        return view('books.index')->with('books', $books);
+
+        //return view('books.index', ['books'=>$books]);
     }
 
     /**
@@ -30,7 +34,11 @@ class BookController extends Controller
     public function create()
     {
         //
-        return view('books.create');
+        $genres = Genre::all();
+        $authors = Author::all();
+
+        return view('books.create',compact('genres', 'authors'));
+
     }
 
     /**
@@ -42,34 +50,44 @@ class BookController extends Controller
     public function store(Request $request)
     {
         //
+
+        //$genres = Genre::all();
+
+
         $request->validate([
             'img'=>'required',
             'title'=>'required|string',
+            'author'=> 'required|string',
+            'genre_id'=> 'required|integer',
             'desc' => 'required|string',
             'year' => 'required|integer',
-            'price' => 'required|string'
+            'min_price' => 'required|digits_between:1,8',
+            'max_price' => 'required|digits_between:1,8',
+            'buyout_price' => 'required|digits_between:1,8',
+            'end_date' => 'required|date_format:d/m/y|after:today|max:8'
+        ]);
 
-          ]);
+        $books = new Book([
+            'img' => $request->get('img'),
+            'title'=> $request->get('title'),
+            'author'=>$request->get('author'),
+            'genre_id'=>$request->get('genre_id'),
+            'desc'=> $request->get('desc'),
+            'year'=> $request->get('year'),
+            'min_price'=> $request->get('min_price'),
+            'max_price'=> $request->get('max_price'),
+            'buyout_price'=> $request->get('buyout_price'),
+            'end_date'=> $request->get('end_date')
+        ]);
 
-
-
-            $books = new Book([
-                'img' => $request->get('img'),
-                'title'=> $request->get('title'),
-                'desc'=> $request->get('desc'),
-                'year'=> $request->get('year'),
-                'price'=> $request->get('price')
-
-            ]);
-
-            if ($request->hasFile('img')) {
-                $image = $request->file('img');
-                $name = str_slug($request->title).'.'.$image->getClientOriginalExtension();
-                $destinationPath = public_path('/book/');
-                $imagePath = $destinationPath. "/".  $name;
-                $image->move($destinationPath, $name);
-                $books->img = $name;
-              }
+        if ($request->hasFile('img')) {
+            $image = $request->file('img');
+            $name = str_slug($request->title).'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/book/');
+            $imagePath = $destinationPath. "/".  $name;
+            $image->move($destinationPath, $name);
+            $books->img = $name;
+            }
 
            // $imageName = time().'.'.$request->img->getClientOriginalExtension();
            // $request->img->move(public_path('book/'), $imageName);
@@ -123,23 +141,43 @@ class BookController extends Controller
         $request->validate([
             'img'=>'required',
             'title'=> 'required|string',
+            'author'=> 'required|string',
+            'genre_id'=> 'required|string',
             'desc' => 'required|string',
             'year' => 'required|integer',
-            'price'=> 'required|string'
+            'min_price' => 'required|digits_between:1,8',
+            'max_price' => 'required|digits_between:1,8',
+            'buyout_price' => 'required|digits_between:1,8',
+            'end_date' => 'required|date_format:d/m/y|after:today|max:8'
 
           ]);
 
           $books = Book::find($id);
           $books->img = $request->get('img');
           $books->title = $request->get('title');
+          $books->author=$request->get('author');
+          $books->genre=$request->get('genre_id');
           $books->desc = $request->get('desc');
-
           $books->year  = $request->get('year');
-          $books->price = $request->get('price');
+          $books->min_price  = $request->get('min_price');
+          $books->max_price = $request->get('max_price');
+          $books->buyout_price=$request->get('buyout_price');
+          $books->end_date=$request->get('end_date');
+
+
+          if ($request->hasFile('img')) {
+            $image = $request->file('img');
+            $name = str_slug($request->title).'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/book/');
+            $imagePath = $destinationPath. "/".  $name;
+            $image->move($destinationPath, $name);
+            $books->img = $name;
+          }
+
 
           $books->save();
 
-          return redirect('/books')/*->with('success', 'Book has been updated')*/;
+          return redirect('/books');
     }
 
     /**
@@ -154,6 +192,6 @@ class BookController extends Controller
         $books = Book::find($id);
         $books->delete();
 
-        return redirect('/books')/*->with('success', 'Book has been deleted Successfully')*/;
+        return redirect('/books');
     }
 }

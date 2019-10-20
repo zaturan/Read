@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Genre;
-
 use Illuminate\Http\Request;
 
-class GenreController extends Controller
+class BiddingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +14,6 @@ class GenreController extends Controller
     public function index()
     {
         //
-        $genres = Genre::all();
-
-        return view('genres.index', compact('genres'));
     }
 
     /**
@@ -29,9 +24,6 @@ class GenreController extends Controller
     public function create()
     {
         //
-        $genres=Genre::All();
-        return view('genres.create', compact('genres'));
-
     }
 
     /**
@@ -43,18 +35,6 @@ class GenreController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate([
-            'genre'=>'required|string'
-
-        ]);
-
-        $genres = new Genre([
-            'genre' => $request->get('genre'),
-
-        ]);
-
-        $genres->save();
-        return redirect('/genres')->with('success', 'Genre has been added');
     }
 
     /**
@@ -77,9 +57,6 @@ class GenreController extends Controller
     public function edit($id)
     {
         //
-        $genres = Genre::find($id);
-
-        return view('genres.edit', compact('genres'));
     }
 
     /**
@@ -92,18 +69,6 @@ class GenreController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $request->validate([
-            'genre'=>'required|string'
-
-
-          ]);
-
-          $genres = Genre::find($id);
-          $genres->genre = $request->get('genre');
-
-          $genres->save();
-
-          return redirect('/genres');
     }
 
     /**
@@ -115,10 +80,5 @@ class GenreController extends Controller
     public function destroy($id)
     {
         //
-
-        $genres = Genre::find($id);
-        $genres->delete();
-
-        return redirect('/genres');
     }
 }

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Genre;
-
+use App\Author;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
-class GenreController extends Controller
+class AuthorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,8 @@ class GenreController extends Controller
     public function index()
     {
         //
-        $genres = Genre::all();
-
-        return view('genres.index', compact('genres'));
+        $authors=Author::all();
+        return view ('authors.index', compact('authors'));
     }
 
     /**
@@ -29,8 +28,7 @@ class GenreController extends Controller
     public function create()
     {
         //
-        $genres=Genre::All();
-        return view('genres.create', compact('genres'));
+        return view('authors.create');
 
     }
 
@@ -44,17 +42,17 @@ class GenreController extends Controller
     {
         //
         $request->validate([
-            'genre'=>'required|string'
+            'author'=>'required|string'
 
         ]);
 
-        $genres = new Genre([
-            'genre' => $request->get('genre'),
+        $authors = new Author([
+            'author' => $request->get('author'),
 
         ]);
 
-        $genres->save();
-        return redirect('/genres')->with('success', 'Genre has been added');
+        $authors->save();
+        return redirect('/authors')->with('success', 'Author has been added');
     }
 
     /**
@@ -77,9 +75,9 @@ class GenreController extends Controller
     public function edit($id)
     {
         //
-        $genres = Genre::find($id);
+        $authors = Author::find($id);
 
-        return view('genres.edit', compact('genres'));
+        return view('authors.edit', compact('authors'));
     }
 
     /**
@@ -93,17 +91,17 @@ class GenreController extends Controller
     {
         //
         $request->validate([
-            'genre'=>'required|string'
+            'author'=>'required|string'
 
 
           ]);
 
-          $genres = Genre::find($id);
-          $genres->genre = $request->get('genre');
+          $authors = Author::find($id);
+          $authors->author = $request->get('author');
 
-          $genres->save();
+          $authors->save();
 
-          return redirect('/genres');
+          return redirect('/authors');
     }
 
     /**
@@ -115,10 +113,9 @@ class GenreController extends Controller
     public function destroy($id)
     {
         //
+        $authors = Author::find($id);
+        $authors->delete();
 
-        $genres = Genre::find($id);
-        $genres->delete();
-
-        return redirect('/genres');
+        return redirect('/authors');
     }
 }
