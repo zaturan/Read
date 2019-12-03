@@ -7,7 +7,7 @@
         <div class="col-md-12">
           <form method="post" action="{{ route('books.update', $books->id) }}" autocomplete="off" class="form-horizontal" enctype="multipart/form">
             @csrf
-            @method('PATCH')
+            @method('PUT')
 
             <div class="card ">
               <div class="card-header card-header-primary">
@@ -15,6 +15,16 @@
                 <p class="card-category"></p>
               </div>
               <div class="card-body ">
+
+              <!-- @if ($errors->any())
+                <div class="alert alert-danger">
+                <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+                </ul>
+                 </div>
+                @endif -->
 
                 <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Choose the file') }}</label>
@@ -40,6 +50,26 @@
                 </div>
 
                 <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('Author') }}</label>
+                  <div class="col-sm-7">
+                    <div class="form-group">
+                      <input class="form-control" name="aut_id" id="input-aut_id" type="text" placeholder="{{ __('Author') }}"
+                      value="{{ $books->authors->author}}"/>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('Genre') }}</label>
+                  <div class="col-sm-7">
+                    <div class="form-group">
+                      <input class="form-control" name="genre_id" id="input-genre_id" type="text" placeholder="{{ __('Genre') }}"
+                      value="{{ $books->genres->genre}}"/>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Description') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group">
@@ -59,11 +89,41 @@
                 </div>
 
                 <div class="row">
-                  <label class="col-sm-2 col-form-label">{{ __('Price') }}</label>
+                  <label class="col-sm-2 col-form-label">{{ __('Min Price') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group">
-                      <input class="form-control" name="price" id="input-price" type="price" placeholder="{{ __('Price') }}"
-                      value="{{$books->price}}"/>
+                      <input class="form-control" name="min_price" id="input-price" type="number" placeholder="{{ __('Min Price') }}"
+                      value="{{$books->min_price}}"/>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('Max Price') }}</label>
+                  <div class="col-sm-7">
+                    <div class="form-group">
+                      <input class="form-control" name="max_price" id="input-max_price" type="number" placeholder="{{ __('Max Price') }}"
+                      value="{{$books->max_price}}"/>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('Buyout Price') }}</label>
+                  <div class="col-sm-7">
+                    <div class="form-group">
+                      <input class="form-control" name="buyout_price" id="input-buyout_price" type="number" placeholder="{{ __('Buyout Price') }}"
+                      value="{{$books->buyout_price}}"/>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('End Date') }}</label>
+                  <div class="col-sm-7">
+                    <div class="form-group">
+                      <input class="form-control" name="end_date" id="input-end_date" type="date" placeholder="{{ __('End Date') }}"
+                      value="{{$books->end_date}}"/>
                     </div>
                   </div>
                 </div>
