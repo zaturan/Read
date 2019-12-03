@@ -22,6 +22,18 @@
                   </div>
                 </div>
 
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+                </ul>
+                 </div>
+                @endif
+
+
+
                 <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Choose the file') }}</label>
                   <div class="col-sm-7">
@@ -51,13 +63,13 @@
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('author') ? ' has-danger' : '' }}">
 
-                      @if ($errors->has('title'))
+                      @if ($errors->has('author'))
                         <span id="author-error" class="error text-danger" for="input-author">{{ $errors->first('author') }}</span>
                       @endif
                       <select class="form-control" name="aut_id" type="text">
                         <option>Please Select Author</option>
                         @foreach($authors as $aut)
-                            <option value="{{$aut->aut_id}}">{{$aut->author}}</option>
+                            <option value="{{$aut->id}}">{{$aut->author}}</option>
                         @endforeach
                     </select>
                     </div>
@@ -71,7 +83,7 @@
                     <select class="form-control" name="genre_id" type="text">
                     <option>Please Select Genre</option>
                     @foreach($genres as $genre)
-                        <option value="{{$genre->genre_id}}">{{$genre->genre}}</option>
+                        <option value="{{$genre->id}}">{{$genre->genre}}</option>
                     @endforeach
                     </select>
                     </div>
@@ -140,7 +152,7 @@
                   <label class="col-sm-2 col-form-label">{{ __('End Date') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('year') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('year') ? ' is-invalid' : '' }}" name="end_date" id="input-end_date" type="date" placeholder="{{ __('MM/DD/YY') }}" value="{{ old('end_date') }}" required />
+                      <input class="form-control{{ $errors->has('year') ? ' is-invalid' : '' }}" name="end_date" id="input-end_date" type="date" placeholder="{{ __('m/d/y') }}" value="{{ old('end_date') }}" required />
                       @if ($errors->has('end_date'))
                         <span id="end_date-error" class="error text-danger" for="end_date-year">{{ $errors->first('y') }}</span>
                       @endif
