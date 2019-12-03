@@ -9,8 +9,7 @@ class Author extends Model
     //
     protected $fillable=['author'];
 
-    public function authors()
-    {
+    public function books(){
         return $this->hasOne('App\Book');
     }
 }
