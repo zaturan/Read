@@ -8,7 +8,7 @@ class Book extends Model
 {
     //
     protected $table='books';
-    protected $fillable = ['img', 'title', 'aut_id', 'genre_id','desc', 'year', 'min_price', 'max_price', 'buyout_price', 'end_date'];
+    protected $fillable = ['user_id','img', 'title', 'aut_id', 'genre_id','desc', 'year', 'min_price', 'max_price', 'buyout_price', 'end_date', 'status'];
 
     // public function authors(){
     //     return $this->hasMany('App\Author');
@@ -22,6 +22,10 @@ class Book extends Model
     public function authors()
     {
         return $this->belongsTo('App\Author', 'aut_id');
+    }
+
+    public function users(){
+        return $this->belongsTo('App\User', 'user_id');
     }
 
 }
