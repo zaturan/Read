@@ -84,6 +84,86 @@
                 </div>
               @endif
             </div>
+            <div class="bmd-form-group{{ $errors->has('address') ? ' has-danger' : '' }}">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                      <i class="material-icons">face</i>
+                  </span>
+                </div>
+                <input type="text" name="address" class="form-control" placeholder="{{ __('Address...') }}" value="{{ old('address') }}" required>
+              </div>
+              @if ($errors->has('address'))
+                <div id="address-error" class="error text-danger pl-3" for="address" style="display: block;">
+                  <strong>{{ $errors->first('address') }}</strong>
+                </div>
+              @endif
+            </div>
+
+            <div class="bmd-form-group{{ $errors->has('zip') ? ' has-danger' : '' }}">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                      <i class="material-icons">face</i>
+                  </span>
+                </div>
+                <input type="text" name="zip" class="form-control" placeholder="{{ __('Zipcode...') }}" value="{{ old('Zipcode') }}" required>
+              </div>
+              @if ($errors->has('zip'))
+                <div id="zip-error" class="error text-danger pl-3" for="zip" style="display: block;">
+                  <strong>{{ $errors->first('zip') }}</strong>
+                </div>
+              @endif
+            </div>
+
+            <div class="bmd-form-group{{ $errors->has('city') ? ' has-danger' : '' }}">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                      <i class="material-icons">face</i>
+                  </span>
+                </div>
+                <input type="text" name="city" class="form-control" placeholder="{{ __('City...') }}" value="{{ old('city') }}" required>
+              </div>
+              @if ($errors->has('city'))
+                <div id="city-error" class="error text-danger pl-3" for="city" style="display: block;">
+                  <strong>{{ $errors->first('city') }}</strong>
+                </div>
+              @endif
+            </div>
+
+            <div class="bmd-form-group{{ $errors->has('Country') ? ' has-danger' : '' }}">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                      <i class="material-icons">face</i>
+                  </span>
+                </div>
+                <input type="text" name="country" class="form-control" placeholder="{{ __('Country...') }}" value="{{ old('country') }}" required>
+              </div>
+              @if ($errors->has('country'))
+                <div id="country-error" class="error text-danger pl-3" for="country" style="display: block;">
+                  <strong>{{ $errors->first('country') }}</strong>
+                </div>
+              @endif
+            </div>
+
+            <div class="bmd-form-group{{ $errors->has('phone_number') ? ' has-danger' : '' }}">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                      <i class="material-icons">face</i>
+                  </span>
+                </div>
+                <input type="text" name="phone_number" class="form-control" placeholder="{{ __('Phone Number...') }}" value="{{ old('phone_number') }}" required>
+              </div>
+              @if ($errors->has('phone_number'))
+                <div id="name-error" class="error text-danger pl-3" for="phone_number" style="display: block;">
+                  <strong>{{ $errors->first('phone_number') }}</strong>
+                </div>
+              @endif
+            </div>
+
             <div class="form-check mr-auto ml-3 mt-3">
               <label class="form-check-label">
                 <input class="form-check-input" type="checkbox" id="policy" name="policy" {{ old('policy', 1) ? 'checked' : '' }} >
