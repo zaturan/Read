@@ -31,6 +31,9 @@
                 <div class="table-responsive">
                   <table class="table">
                     <thead class=" text-primary">
+                    <th>
+                          {{ __('User') }}
+                      </th>
                         <th>
                           {{ __('Image') }}
                       </th>
@@ -68,17 +71,17 @@
                     <tbody>
                       @foreach($books as $book)
                         <tr>
-                        <!-- <td>
-                            <img src="{{asset('book/'. $book->img )}}" alt="image" width="50px" height="50px"/>
-                          </td> -->
                           <td>
-                          <img src="{{url('book/'.$book->img)}}" alt="image" width="50px" height="50px"/>
+                              {{$book->users->name}}
+                          </td>
+                          <td>
+                          <img src="{{url('uploads/artwork_images/'.$book->img)}}" alt="image" width="50px" height="50px"/>
                           </td>
                           <td>
                             {{ $book->title }}
                           </td>
                           <td>
-                            {{ $book->author }}
+                            {{ $book->author}}
                           </td>
                           <td>
                             {{ $book->genres->genre}}
@@ -99,7 +102,7 @@
                             RM{{ $book->buyout_price }}
                           </td>
                           <td>
-                            RM{{ $book->end_date }}
+                            {{ $book->end_date }}
                           </td>
                           <td class="td-actions text-right">
                             <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('books.edit', $book) }}" data-original-title="" title=""><i class="material-icons">edit</i>
