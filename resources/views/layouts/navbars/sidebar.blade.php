@@ -34,12 +34,12 @@
               </a>
             </li>
 
-            <li class="nav-item{{ $activePage == 'authors' ? ' active' : '' }}">
+            <!-- <li class="nav-item{{ $activePage == 'authors' ? ' active' : '' }}">
               <a class="nav-link" href="{{ route('authors.index') }}">
                 <span class="sidebar-mini"> MA </span>
                 <span class="sidebar-normal">{{ __('My Author') }} </span>
               </a>
-            </li>
+            </li> -->
 
 
           </ul>
@@ -58,7 +58,7 @@
             <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
               <a class="nav-link" href="{{ route('profile.update') }}">
                 <span class="sidebar-mini"> UP </span>
-                <span class="sidebar-normal">{{ __('user Profile') }} </span>
+                <span class="sidebar-normal">{{ __('Admin Profile') }} </span>
               </a>
             </li>
             <li class="nav-item{{ $activePage == 'user-management' ? ' active' : '' }}">
