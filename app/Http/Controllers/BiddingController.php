@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Bid;
+use App\Book;
+use App\Author;
+use App\Genre;
+
 class BiddingController extends Controller
 {
     /**
