@@ -75,7 +75,7 @@
                               {{$book->users->name}}
                           </td>
                           <td>
-                          <img src="{{url('uploads/artwork_images/'.$book->img)}}" alt="image" width="50px" height="50px"/>
+                          <img src="{{url('book/'.$book->img)}}" alt="image" width="50px" height="50px"/>
                           </td>
                           <td>
                             {{ $book->title }}
