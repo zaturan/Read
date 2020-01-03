@@ -55,14 +55,12 @@ class BookController extends Controller
         $request->validate([
             'img'=>'required',
             'title'=>'required|string',
-            // 'aut_id'=> 'required|integer',
-            // 'genre_id'=> 'required|integer',
             'desc' => 'required|string',
             'year' => 'required|integer',
             'min_price' => 'required|digits_between:1,1000',
             'max_price' => 'required|digits_between:1,1000',
             'buyout_price' => 'required|digits_between:1,1000',
-            'end_date' => 'required|date_format:m/d/y|after:today'
+            //'end_date' => 'required|date_format:m/d/y|after:today'
         ]);
 
         // echo "validate done";
@@ -73,7 +71,7 @@ class BookController extends Controller
             'user_id' => Auth::id(),
             'img' => $request->get('img'),
             'title'=> $request->get('title'),
-            'aut_id'=>$request->get('aut_id'),
+            'author'=>$request->get('author'),
             'genre_id'=>$request->get('genre_id'),
             'desc'=> $request->get('desc'),
             'year'=> $request->get('year'),
