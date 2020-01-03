@@ -62,16 +62,10 @@
                   <label class="col-sm-2 col-form-label">{{ __('Author') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('author') ? ' has-danger' : '' }}">
-
+                    <input class="form-control{{ $errors->has('author') ? ' is-invalid' : '' }}" name="author" id="input-author" type="text" placeholder="{{ __('Author') }}" value="{{ old('author') }}" required="true" aria-required="true"/>
                       @if ($errors->has('author'))
                         <span id="author-error" class="error text-danger" for="input-author">{{ $errors->first('author') }}</span>
                       @endif
-                      <select class="form-control" name="aut_id" type="text">
-                        <option>Please Select Author</option>
-                        @foreach($authors as $aut)
-                            <option value="{{$aut->id}}">{{$aut->author}}</option>
-                        @endforeach
-                    </select>
                     </div>
                   </div>
                 </div>
