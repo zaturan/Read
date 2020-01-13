@@ -66,10 +66,6 @@
                                     <i class="material-icons">edit</i>
                                     <div class="ripple-container"></div>
                                   </a>
-                                  <!--<button type="button" class="btn btn-danger btn-link" data-original-title="" title="" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
-                                      <i class="material-icons">close</i>
-                                      <div class="ripple-container"></div>
-                                  </button>-->
                               </form>
                             @else
                               <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('profile.edit') }}" data-original-title="" title="">
@@ -78,8 +74,29 @@
                               </a>
                             @endif
                           </td>
+                          <td>
+                          <input data-id="{{$user->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $user->status ? 'checked' : '' }}>
+                          </td>
                         </tr>
                       @endforeach
+                      <script>
+                        $(function() {
+                            $('.toggle-class').change(function() {
+                                var status = $(this).prop('checked') == true ? 1 : 0;
+                                var user_id = $(this).data('id');
+
+                                $.ajax({
+                                    type: "GET",
+                                    dataType: "json",
+                                    url: '/changeStatus',
+                                    data: {'status': status, 'user_id': user_id},
+                                    success: function(data){
+                                    console.log(data.success)
+                                    }
+                                });
+                            })
+                        })
+                        </script>
                     </tbody>
                   </table>
                 </div>

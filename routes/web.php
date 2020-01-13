@@ -14,9 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Auth::routes();
+// Auth::routes();
+
+Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+Route::get('users', 'UserController@index');
+Route::get('changeStatus', 'UserController@ChangeUserStatus');
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('table-list', function () {
@@ -48,16 +52,18 @@ Route::group(['middleware' => 'auth'], function () {
 	})->name('upgrade');
 });
 
-Route::group(['middleware' => 'auth'], function () {
+Route::middleware(['auth'])->group(function () {
 	Route::resource('user', 'UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
-	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
+    Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
+    Route::resource('books', 'BookController');
+    Route::resource('genres', 'GenreController');
+
 });
 
 
-Route::resource('books', 'BookController');
-Route::resource('genres', 'GenreController');
+Route::get('changeStatus', 'BookController@changeStatus');
 Route::resource('authors', 'AuthorController');
 Route::resource('biddings', 'BiddingController');
 

@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Book;
 use App\Genre;
-use App\Author;
 use Auth;
 
 use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
+
+    function __construct()
+    {
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -36,9 +40,7 @@ class BookController extends Controller
     {
         //
         $genres = Genre::all();
-        $authors = Author::all();
-
-        return view('books.create',compact('genres', 'authors'));
+        return view('books.create',compact('genres'));
 
     }
 
@@ -94,13 +96,6 @@ class BookController extends Controller
             $books->img = $name;
             }
 
-            // echo "image done";
-            // die();
-
-           // $imageName = time().'.'.$request->img->getClientOriginalExtension();
-           // $request->img->move(public_path('book/'), $imageName);
-
-
             $books->save();
 
             return redirect('/books')->with('success', 'Book has been added');
@@ -128,11 +123,11 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-        //
-        $books = Book::find($id);
-        $authors=Author::find($id);
 
-        return view('books.edit', compact('books', 'authors'));
+        $books = Book::find($id);
+        $genres = Genre::all();
+
+        return view('books.edit', compact('books', 'genres'));
     }
 
     /**
@@ -151,8 +146,8 @@ class BookController extends Controller
         $request->validate([
             'img'=>'required',
             'title'=> 'required|string',
-            //'aut_id'=> 'required|integer',
-            //'genre_id'=> 'required|integer',
+            'author'=> 'required|string',
+            'genre_id'=> 'required|integer',
             'desc' => 'required|string',
             'year' => 'required|integer',
             'min_price' => 'required|digits_between:1,8',
@@ -165,7 +160,7 @@ class BookController extends Controller
           $books = Book::find($id);
           $books->img = $request->get('img');
           $books->title = $request->get('title');
-          $books->aut_id=$request->get('aut_id');
+          $books->author=$request->get('author');
           $books->genre_id=$request->get('genre_id');
           $books->desc = $request->get('desc');
           $books->year  = $request->get('year');
@@ -204,4 +199,12 @@ class BookController extends Controller
 
         return redirect('/books');
     }
+
+    // public function changeStatus(Request $request){
+    //     $books = Book::find($request->book_id);
+    //     $books->status = $request->status;
+    //     $books->save();
+
+    //     return response()->json(['success'=>'Status change successfully']);
+    // }
 }

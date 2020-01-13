@@ -14,15 +14,11 @@ class Book extends Model
     //     return $this->hasMany('App\Author');
     // }
 
-    public function genres()
-    {
+    public function genres(){
         return $this->belongsTo('App\Genre', 'genre_id');
     }
 
-    // public function authors()
-    // {
-    //     return $this->belongsTo('App\Author', 'aut_id');
-    // }
+
 
     public function users(){
         return $this->belongsTo('App\User', 'user_id');

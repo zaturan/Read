@@ -31,10 +31,7 @@
                 <div class="table-responsive">
                   <table class="table">
                     <thead class=" text-primary">
-                    <th>
-                          {{ __('User') }}
-                      </th>
-                        <th>
+                      <th>
                           {{ __('Image') }}
                       </th>
                       <th>
@@ -67,13 +64,14 @@
                       <th class="text-center" colspan="3">
                         {{ __(' Actions') }}
                       </th>
+                      <th>
+                          {{__('Status')}}
+                      </th>
                     </thead>
                     <tbody>
+                    @auth
                       @foreach($books as $book)
                         <tr>
-                          <td>
-                              {{$book->users->name}}
-                          </td>
                           <td>
                           <img src="{{url('book/'.$book->img)}}" alt="image" width="50px" height="50px"/>
                           </td>
@@ -84,7 +82,7 @@
                             {{ $book->author}}
                           </td>
                           <td>
-                            {{ $book->genres->genre}}
+                            {{ $book->genres['genre']}}
                           </td>
                           <td>
                             {{ $book->desc }}
@@ -108,8 +106,6 @@
                             <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('books.edit', $book) }}" data-original-title="" title=""><i class="material-icons">edit</i>
                             <div class="ripple-container"></div>
                             </a>
-                          </td>
-                          <td class="td-actions text-left">
                             <form action="{{ route('books.destroy', $book) }}" method="post">
                                 @csrf
                                 @method('delete')
@@ -119,16 +115,17 @@
                                     <div class="ripple-container"></div>
                                 </button>
                             </form>
-                            <!-- <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('books.destroy', $book) }}" data-original-title="" title=""><i class="material-icons">delete</i>
-                            <div class="ripple-container"></div>
-                            </a> -->
                           </td>
+                          <!-- <td class="td-actions text-left">
 
-
-
-
+                          </td> -->
+                          <td class="td-actions text-left" colspan="3">
+                            <input data-id="{{$books[0]->id}}" class="switch" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $books[0]->status ? 'checked' : '' }}>
+                            <span class="slider round"></span>
+                          </td>
                         </tr>
                       @endforeach
+                      @endauth
                     </tbody>
                   </table>
                 </div>
@@ -138,4 +135,22 @@
       </div>
     </div>
   </div>
+  <script>
+     $(function() {
+         $('.toggle-class').change(function() {
+             var status = $(this).prop('checked') == true ? 1 : 0;
+             var book_id = $(this).data('id');
+
+             $.ajax({
+                 type: "GET",
+                 dataType: "json",
+                 url: '/changeStatus',
+                 data: {'status': status, 'book_id': book_id},
+                 success: function(data){
+                 console.log(data.success)
+                 }
+             });
+         })
+     })
+     </script>
 @endsection

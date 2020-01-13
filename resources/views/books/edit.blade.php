@@ -16,7 +16,7 @@
               </div>
               <div class="card-body ">
 
-              <!-- @if ($errors->any())
+              @if ($errors->any())
                 <div class="alert alert-danger">
                 <ul>
                 @foreach ($errors->all() as $error)
@@ -24,7 +24,7 @@
                 @endforeach
                 </ul>
                  </div>
-                @endif -->
+                @endif
 
                 <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Choose the file') }}</label>
@@ -53,8 +53,8 @@
                   <label class="col-sm-2 col-form-label">{{ __('Author') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group">
-                      <input class="form-control" name="aut_id" id="input-aut_id" type="text" placeholder="{{ __('Author') }}"
-                      value="{{ $books->authors->author}}"/>
+                      <input class="form-control" name="author" id="input-author" type="text" placeholder="{{ __('Author') }}"
+                      value="{{ $books->author}}"/>
                     </div>
                   </div>
                 </div>
@@ -63,8 +63,12 @@
                   <label class="col-sm-2 col-form-label">{{ __('Genre') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group">
-                      <input class="form-control" name="genre_id" id="input-genre_id" type="text" placeholder="{{ __('Genre') }}"
-                      value="{{ $books->genres->genre}}"/>
+                    <select class="form-control" name="genre_id" type="text" id="input-genre">
+                    <option>Please Select Genre</option>
+                    @foreach($genres as $genre)
+                        <option value="{{$genre->id}}">{{$genre->genre}}</option>
+                    @endforeach
+                    </select>
                     </div>
                   </div>
                 </div>
@@ -81,9 +85,16 @@
 
                 <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Year') }}</label>
-                  <div class="col-sm-7">
-                    <div class="form-group">
-                      <input class="form-control" name="year" id="input-desc" type="year" placeholder="{{ __('Year') }}" value="{{ $books->year }}" />
+                  <div class="col-sm-1">
+                    <div class="form-group{{ $errors->has('year') ? ' has-danger' : '' }}">
+                      <select class="form-control" name="year" type="number">
+                      @for ($year=1900; $year <= 2020; $year++): ?>
+                        <option value="<?=$year;?>"><?=$year;?></option>
+                      @endfor
+                      @if ($errors->has('year'))
+                        <span id="year-error" class="error text-danger" for="input-year">{{ $errors->first('y') }}</span>
+                      @endif
+                      </select>
                     </div>
                   </div>
                 </div>

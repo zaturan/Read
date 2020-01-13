@@ -102,10 +102,14 @@
                   <label class="col-sm-2 col-form-label">{{ __('Year') }}</label>
                   <div class="col-sm-1">
                     <div class="form-group{{ $errors->has('year') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('year') ? ' is-invalid' : '' }}" name="year" id="input-year" type="year" placeholder="{{ __('Year') }}" value="{{ old('year') }}" required />
+                      <select class="form-control" name="year" type="number">
+                      @for ($year=1900; $year <= 2020; $year++): ?>
+                        <option value="<?=$year;?>"><?=$year;?></option>
+                      @endfor
                       @if ($errors->has('year'))
                         <span id="year-error" class="error text-danger" for="input-year">{{ $errors->first('y') }}</span>
                       @endif
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -120,7 +124,9 @@
                       @endif
                     </div>
                   </div>
+                </div>
 
+                <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Max Price') }}</label>
                   <div>
                     <div class="form-group{{ $errors->has('max_price') ? ' has-danger' : '' }}">
@@ -130,7 +136,9 @@
                       @endif
                     </div>
                   </div>
+                </div>
 
+                <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Buyout Price') }}</label>
                   <div>
                     <div class="form-group{{ $errors->has('buyout_price') ? ' has-danger' : '' }}">
@@ -140,6 +148,7 @@
                       @endif
                     </div>
                   </div>
+                </div>
                 </div>
 
                 <div class="row">
