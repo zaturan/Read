@@ -11,7 +11,7 @@
   </div>
   <div class="sidebar-wrapper">
     <ul class="nav">
-      <li class="nav-item {{ ($activePage == 'bookMgt' || $activePage == 'bookAvt') ? ' active' : '' }}">
+      <li class="nav-item {{ ($activePage == 'newBook' || $activePage == 'bookMgt') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#book" aria-expanded="true">
           <i><img style="width:25px" src="{{asset('material')}}/img/book.png"></i>
           <p>{{ __('Seller') }}
@@ -20,26 +20,24 @@
         </a>
         <div class="collapse show" id="book">
           <ul class="nav">
-            <li class="nav-item{{ $activePage == 'bookMgt' ? ' active' : '' }}">
+
+
+
+            <li class="nav-item{{ $activePage == 'newBook' ? ' active' : '' }}">
               <a class="nav-link" href="{{ route('books.create') }}">
+                <span class="sidebar-mini"> NB </span>
+                <span class="sidebar-normal">{{ __('Add New Book') }} </span>
+              </a>
+            </li>
+
+            <li class="nav-item{{ $activePage == 'bookMgt' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('books.index') }}">
                 <span class="sidebar-mini"> BM </span>
                 <span class="sidebar-normal">{{ __('Book Management') }} </span>
               </a>
             </li>
 
-            <li class="nav-item{{ $activePage == 'bookAct' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('books.index') }}">
-                <span class="sidebar-mini"> BA </span>
-                <span class="sidebar-normal">{{ __('Book Activation') }} </span>
-              </a>
-            </li>
 
-            <!-- <li class="nav-item{{ $activePage == 'genres' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('genres.index') }}">
-                <span class="sidebar-mini"> MG </span>
-                <span class="sidebar-normal">{{ __('My Genre') }} </span>
-              </a>
-            </li> -->
 
             <!-- <li class="nav-item{{ $activePage == 'authors' ? ' active' : '' }}">
               <a class="nav-link" href="{{ route('authors.index') }}">
@@ -53,7 +51,7 @@
         </div>
         </li>
 
-        <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">
+        <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management' || $activePage == 'genres') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#user" aria-expanded="true">
           <i><img style="width:25px" src="{{asset('material')}}/img/book.png"></i>
           <p>{{ __('User') }}
@@ -74,34 +72,17 @@
                 <span class="sidebar-normal"> {{ __('User Management') }} </span>
               </a>
             </li>
+            <li class="nav-item{{ $activePage == 'genres' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('genres.index') }}">
+                <span class="sidebar-mini"> MG </span>
+                <span class="sidebar-normal">{{ __('My Genre') }} </span>
+              </a>
+            </li>
           </ul>
         </div>
         </li>
 
-        <!-- <li class="nav-item {{ ($activePage == 'bookMgt' || $activePage == 'bookAct') ? ' active' : '' }}">
-        <a class="nav-link" data-toggle="collapse" href="#user" aria-expanded="true">
-          <i><img style="width:25px" src="{{asset('material')}}/img/laravel.svg"></i>
-          <p>{{ __('Seller') }}
-            <b class="caret"></b>
-          </p>
-        </a>
-        <div class="collapse show" id="user">
-          <ul class="nav">
-            <li class="nav-item{{ $activePage == 'bookMgt' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('books.create') }}">
-                <span class="sidebar-mini"> BM </span>
-                <span class="sidebar-normal">{{ __('Book Management') }} </span>
-              </a>
-            </li>
-            <li class="nav-item{{ $activePage == 'bookAct' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('books.index') }}">
-                <span class="sidebar-mini"> BA </span>
-                <span class="sidebar-normal"> {{ __('Book Activation') }} </span>
-              </a>
-            </li>
-          </ul>
-        </div>
-        </li> -->
+
     </ul>
   </div>
 </div>

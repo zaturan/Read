@@ -16,9 +16,15 @@
     <link href="{{ asset('material') }}/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
     <link href="{{ asset('material') }}/css/bootstrap.min.css" rel="stylesheet" />
     <link href="{{asset('material')}}/css/bootstrap-toogle.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="//cdn.datatables.net/plug-ins/9dcbecd42ad/integration/bootstrap/3/dataTables.bootstrap.css">
+
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <!--<link href="{{ asset('material') }}/demo/demo.css" rel="stylesheet" />-->
-
+    <script>
+       $(document).ready(function() {
+           $('#datatable').DataTable();
+       });
+   </script>
 
     <style>
         body{
@@ -44,6 +50,7 @@
         <script src="{{ asset('material') }}/js/core/bootstrap-toggle.min.js"></script>
         <script src="{{ asset('material') }}/js/core/bootstrap-material-design.min.js"></script>
         <script src="{{ asset('material') }}/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+        <script src="{{ asset('material') }}/js/dataTables.bootstrap.js"></script>
         <!-- Plugin for the momentJs  -->
         <script src="{{ asset('material') }}/js/plugins/moment.min.js"></script>
         <!--  Plugin for Sweet Alert -->

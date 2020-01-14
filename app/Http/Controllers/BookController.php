@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Book;
 use App\Genre;
 use Auth;
+use DB;
 
 use Illuminate\Http\Request;
+use Redirect, Response;
 
 class BookController extends Controller
 {
@@ -24,11 +26,11 @@ class BookController extends Controller
     {
         //
         $books = Book::all();
-       // $genres = Genre::all();
+        //$books = DB::table('books')->orderBy('id', 'asc')->paginate(5);
+        Book::with('genres')->orderBy('id', 'asc')->paginate(5);
+        //$genres = Genre::all();
 
-        return view('books.index')->with('books', $books);
-
-        //return view('books.index', ['books'=>$books]);
+        return view('books.index', compact('books', 'genres'));
     }
 
     /**
@@ -112,6 +114,9 @@ class BookController extends Controller
     public function show($id)
     {
         //
+        // $books = Book::where('user_id', Auth::users()->id);
+
+        // return view('books.show', compact('books'));
     }
 
 
@@ -207,4 +212,12 @@ class BookController extends Controller
 
     //     return response()->json(['success'=>'Status change successfully']);
     // }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $searchResults = Book::where([['title', 'like', "%{$query}%"], ['status', 'active']])->paginate(8);
+
+        return view('search', compact('searchResults'));
+    }
 }

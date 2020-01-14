@@ -59,6 +59,7 @@ Route::middleware(['auth'])->group(function () {
     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
     Route::resource('books', 'BookController');
     Route::resource('genres', 'GenreController');
+    Route::get('/search', 'BookController@search');
 
 });
 

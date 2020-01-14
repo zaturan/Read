@@ -28,7 +28,7 @@
                     <a href="{{ route('books.create') }}" class="btn btn-sm btn-primary">{{ __('Add Book') }}</a>
                   </div>
                 </div>
-                <div class="table-responsive">
+                <div class="table-responsive" id="datatable">
                   <table class="table">
                     <thead class=" text-primary">
                       <th>
@@ -41,13 +41,10 @@
                           {{ __('Author') }}
                       </th>
                       <th>
-                          {{ __('Genre') }}
+                         {{ __('Genre') }}
                       </th>
                       <th>
-                        {{ __('Description') }}
-                      </th>
-                      <th>
-                        {{ __('Year') }}
+                       {{ __('Year') }}
                       </th>
                       <th>
                         {{ __('Min Price') }}
@@ -82,10 +79,7 @@
                             {{ $book->author}}
                           </td>
                           <td>
-                            {{ $book->genres['genre']}}
-                          </td>
-                          <td>
-                            {{ $book->desc }}
+                            {{ $book->genres->genre ?? ''}}
                           </td>
                           <td>
                             {{ $book->year }}
@@ -103,9 +97,12 @@
                             {{ $book->end_date }}
                           </td>
                           <td class="td-actions text-right">
+                            <td>
                             <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('books.edit', $book) }}" data-original-title="" title=""><i class="material-icons">edit</i>
                             <div class="ripple-container"></div>
                             </a>
+                            </td>
+                            <td>
                             <form action="{{ route('books.destroy', $book) }}" method="post">
                                 @csrf
                                 @method('delete')
@@ -115,11 +112,12 @@
                                     <div class="ripple-container"></div>
                                 </button>
                             </form>
+                            </td>
                           </td>
                           <!-- <td class="td-actions text-left">
 
                           </td> -->
-                          <td class="td-actions text-left" colspan="3">
+                          <td class="td-actions text-left" colspan="6">
                             <input data-id="{{$books[0]->id}}" class="switch" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $books[0]->status ? 'checked' : '' }}>
                             <span class="slider round"></span>
                           </td>
@@ -135,22 +133,10 @@
       </div>
     </div>
   </div>
-  <script>
-     $(function() {
-         $('.toggle-class').change(function() {
-             var status = $(this).prop('checked') == true ? 1 : 0;
-             var book_id = $(this).data('id');
-
-             $.ajax({
-                 type: "GET",
-                 dataType: "json",
-                 url: '/changeStatus',
-                 data: {'status': status, 'book_id': book_id},
-                 success: function(data){
-                 console.log(data.success)
-                 }
-             });
-         })
-     })
-     </script>
 @endsection
+
+@section('js')
+
+@endsection
+
+
