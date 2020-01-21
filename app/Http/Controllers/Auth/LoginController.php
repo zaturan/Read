@@ -31,7 +31,7 @@ class LoginController extends Controller
     // protected $redirectTo = '/home';
 
     protected function authenticated(Request $request, $user) {
-        if ($user->role_id == 2) {
+        if ($user->role_id == 1) {
             return redirect('/home');
         }
         else {
