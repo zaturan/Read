@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 // Auth::routes();
 
+
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
@@ -59,11 +60,10 @@ Route::middleware(['auth'])->group(function () {
     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
     Route::resource('books', 'BookController');
     Route::resource('genres', 'GenreController');
-    Route::get('/search', 'BookController@search');
-
+    Route::resource('biddings', 'BiddingController');
 });
 
-
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('changeStatus', 'BookController@changeStatus');
 Route::resource('authors', 'AuthorController');
 Route::resource('biddings', 'BiddingController');

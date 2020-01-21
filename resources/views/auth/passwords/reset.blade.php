@@ -36,6 +36,9 @@
                   </span>
                 </div>
                 <input type="password" name="password" id="password" class="form-control" placeholder="{{ __('Password...') }}" required>
+                <p id="passwordHelpBlock" class="form-text text-muted">
+                Your password must be more than 8 characters long, should contain at-least 1 Uppercase, 1 Lowercase, 1 Numeric and 1 special character.
+                </p>
               </div>
               @if ($errors->has('password'))
                 <div id="password-error" class="error text-danger pl-3" for="password" style="display: block;">

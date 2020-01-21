@@ -9,18 +9,7 @@
 
         <div class="card card-login card-hidden mb-3">
           <div class="card-header card-header-primary text-center">
-            <h4 class="card-title"><strong>{{ __('Register') }}</strong></h4>
-            <div class="social-line">
-              <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-                <i class="fa fa-facebook-square"></i>
-              </a>
-              <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-                <i class="fa fa-twitter"></i>
-              </a>
-              <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-                <i class="fa fa-google-plus"></i>
-              </a>
-            </div>
+            <h4 class="card-title"><strong>{{ __('REGISTER') }}</strong></h4>
           </div>
           <div class="card-body ">
 
@@ -67,6 +56,9 @@
                 <div id="password-error" class="error text-danger pl-3" for="password" style="display: block;">
                   <strong>{{ $errors->first('password') }}</strong>
                 </div>
+                <p id="passwordHelpBlock" class="form-text text-muted">
+                Your password must be more than 8 characters long, should contain at-least 1 Uppercase, 1 Lowercase, 1 Numeric and 1 special character.
+                </p>
               @endif
             </div>
             <div class="bmd-form-group{{ $errors->has('password_confirmation') ? ' has-danger' : '' }} mt-3">

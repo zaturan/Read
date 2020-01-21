@@ -32,8 +32,6 @@
                  </div>
                 @endif
 
-
-
                 <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Choose the file') }}</label>
                   <div class="col-sm-7">

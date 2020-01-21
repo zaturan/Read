@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
+
+    public function index()
+    {
+        return view('profile.index');
+    }
+
     /**
      * Show the form for editing the profile.
      *

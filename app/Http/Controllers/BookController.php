@@ -70,7 +70,7 @@ class BookController extends Controller
         // echo "validate done";
         // print_var($request);
         // die();
-
+        echo "hai";
         $books = new Book([
             'user_id' => Auth::id(),
             'img' => $request->get('img'),
