@@ -175,7 +175,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         LaravelFrontendPresets\MaterialPreset\MaterialPresetServiceProvider::class,
-        Yajra\DataTables\DataTablesServiceProvider::class,
 
 
     ],
@@ -227,8 +226,7 @@ return [
         'Str' => Illuminate\Support\Str::class,
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
-        'View' => Illuminate\Support\Facades\View::class,
-        'Datatables' => Yajra\DataTables\Facades\DataTables::class,
+        'View' => Illuminate\Support\Facades\View::class
     ],
 
 ];

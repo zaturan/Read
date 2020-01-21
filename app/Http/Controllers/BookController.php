@@ -26,9 +26,7 @@ class BookController extends Controller
     {
         //
         $books = Book::all();
-        //$books = DB::table('books')->orderBy('id', 'asc')->paginate(5);
         Book::with('genres')->orderBy('id', 'asc')->paginate(5);
-        //$genres = Genre::all();
 
         return view('books.index', compact('books', 'genres'));
     }
