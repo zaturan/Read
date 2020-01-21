@@ -23,7 +23,7 @@ class BiddingController extends Controller
         //
         $books = Book::all();
         $date = strtotime('$books->end_date');
-        $currentBid =
+        // $currentBid =
         $remaining = $date - time();
         $days_remaining = floor($remaining / 86400);
         $hours_remaining = floor(($remaining % 86400) / 3600);
