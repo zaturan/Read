@@ -28,5 +28,7 @@ class Bid extends Model
 				->where(function ($query) {
 					$query->where('bid_end_time', '0000-00-00 00:00:00')->orWhereNull('bid_end_time')->orWhere('bid_end_time', '>=', date('Y-m-d', time()));
 				});
-	}
+    }
+
+
 }

@@ -3030,7 +3030,7 @@ ul {
 @media (max-width: 991px) {
     /* line 2, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_banner.scss */
     .banner_part {
-        height: 450px;
+        height: 550px;
     }
 }
 
@@ -3051,7 +3051,7 @@ ul {
 @media only screen and (min-width: 1200px) and (max-width: 1440px) {
     /* line 2, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_banner.scss */
     .banner_part {
-        height: 450px;
+        height: 600px;
     }
 }
 
@@ -3305,14 +3305,14 @@ ul {
 
 /* line 9, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_single_product.scss */
 
-.single_product_list .single_product_imgss {
+.single_product_list .single_product_img {
     position: relative;
     margin: 35px 0 0 35px;
 }
 
 @media (max-width: 991px) {
     /* line 9, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_single_product.scss */
-    .single_product_list .single_product_imgs {
+    .single_product_list .single_product_img {
         max-width: 204px;
     }
 }
@@ -3320,7 +3320,7 @@ ul {
 
 /* line 15, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_single_product.scss */
 
-.single_product_list .single_product_imgs .product_overlay {
+.single_product_list .single_product_img .product_overlay {
     position: absolute;
     left: -35px;
     top: -35px;
@@ -3438,7 +3438,7 @@ ul {
 
 /* line 82, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_single_product.scss */
 
-.single_product_list .single_product_iner:nth-child(2n-2) .row .single_product_imgs {
+.single_product_list .single_product_iner:nth-child(2n-2) .row .single_product_img {
     position: relative;
     margin: 0 35px 35px 0;
 }
@@ -3446,7 +3446,7 @@ ul {
 
 /* line 85, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_single_product.scss */
 
-.single_product_list .single_product_iner:nth-child(2n-2) .row .single_product_imgs .product_overlay {
+.single_product_list .single_product_iner:nth-child(2n-2) .row .single_product_img .product_overlay {
     position: absolute;
     left: auto;
     right: -35px;
@@ -3472,7 +3472,7 @@ ul {
 /* line 103, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_single_product.scss */
 
 .product_image_area {
-    margin-top: -360px;
+    margin-top: 0px;
 }
 
 @media (max-width: 991px) {
@@ -3524,7 +3524,7 @@ ul {
 /* line 133, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_single_product.scss */
 
 .product_image_area .single_product_text {
-    margin: 100px 0 200px;
+    margin: 100px 0 100px;
 }
 
 @media (max-width: 991px) {
@@ -10476,7 +10476,7 @@ h6 {
 /* line 2, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_breadcrumb.scss */
 
 .breadcrumb_part {
-    height: 150px;
+    height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;

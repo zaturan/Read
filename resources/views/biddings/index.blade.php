@@ -28,9 +28,8 @@
                                 <div class="single_product_item">
                                     <img src="{{url('book/'.$book->img)}}" alt="image" class="img-fluid" >
                                     <h3> <a href="{{route('biddings.show', $book->id)}}">{{$book->title}}</a> </h3>
-                                    <p>Days {{$days_remaining}}</p>
-                                    <p>Hours {{$hours_remaining}}</p>
-                                    Price start from<p>RM {{$book->min_price}}</p>
+                                    <p>Current Amount of Bid: RM{{$currentbid}}</p>
+                                    <p>Price start from RM {{$book->min_price}}</p>
                                 </div>
                             </div>
                             @endforeach

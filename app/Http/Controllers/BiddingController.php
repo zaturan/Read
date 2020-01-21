@@ -10,6 +10,7 @@ use App\Book;
 use App\Author;
 use App\Genre;
 use Auth;
+use DB;
 
 class BiddingController extends Controller
 {
@@ -22,13 +23,10 @@ class BiddingController extends Controller
     {
         //
         $books = Book::all();
-        $date = strtotime('$books->end_date');
-        // $currentBid =
-        $remaining = $date - time();
-        $days_remaining = floor($remaining / 86400);
-        $hours_remaining = floor(($remaining % 86400) / 3600);
         Book::with('genres')->orderBy('id', 'asc')->paginate(5);
-        return view('biddings.index', compact('books', 'genres', 'days_remaining', 'hours_remaining'));
+        $currentbid = Bid::orderBy('book_id', 'desc')->first()->price;
+
+        return view('biddings.index', compact('books', 'genres', 'currentbid'));
     }
 
     /**
@@ -58,7 +56,7 @@ class BiddingController extends Controller
 
         $bids-> save();
 
-        return redirect()->back();
+        return redirect('/biddings');
 
     }
 
@@ -72,9 +70,9 @@ class BiddingController extends Controller
     {
         //
         $books = Book::find($id);
-        $genres = Genre::find($id);
+        // $genres = Genre::find($id);
 
-        return view('biddings.show',compact('books', 'genres'));
+        return view('biddings.show',compact('books'));
     }
 
     /**
