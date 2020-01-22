@@ -65,10 +65,7 @@ class BookController extends Controller
             //'end_date' => 'required|date_format:m/d/y|after:today'
         ]);
 
-        // echo "validate done";
-        // print_var($request);
-        // die();
-        echo "hai";
+
         $books = new Book([
             'user_id' => Auth::id(),
             'img' => $request->get('img'),
@@ -82,9 +79,6 @@ class BookController extends Controller
             'buyout_price'=> $request->get('buyout_price'),
             'end_date'=> $request->get('end_date')
         ]);
-
-        // echo "book done";
-        // die();
 
 
         if ($request->hasFile('img')) {
